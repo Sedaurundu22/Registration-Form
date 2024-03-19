@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üye Kayıt Formu</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+    input[type=text] {
+        width: 17%;
+        padding: 8px 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+    }
+
+    input[type=text]:focus {
+        background-color: rgb(186, 55, 134);
+    }
+
+    input[type=tel] {
+        width: 17%;
+        padding: 8px 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+    }
+    input[type=tel]:focus {
+        background-color: rgb(186, 55, 134);
+    }
+    
+    input[type=email] {
+        width: 17%;
+        padding: 8px 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+    }
+    input[type=email]:focus {
+        background-color: rgb(186, 55, 134);
+    }
+
+    input[type=password] {
+        width: 17%;
+        padding: 8px 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+    }
+    input[type=password]:focus {
+        background-color: rgb(186, 55, 134);
+    }
+
+    .button {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    body {
+        background-color: rgb(196, 211, 215);
+    }
+</style>
+
+<body>
+    <h1 style="color: rgb(186, 55, 134);">ÜYE KAYIT FORMU</h1>
+    <form id="uyeFormu">
+        <div>
+            <label for="ad">Ad:</label>
+            <input type="text" id="ad" name="ad" required>
+        </div>
+
+        <div>
+            <label for="soyad">Soyad:</label>
+            <input type="text" id="soyad" name="soyad" required>
+        </div>
+        <div>
+            <label for="cepTelefonu">Cep Telefonu:</label>
+            <input type="tel" id="cepTelefonu" name="cepTelefonu" required>
+        </div class="relative">
+
+        <div>
+            <label for="eposta">E-posta:</label>
+            <input type="email" id="eposta" name="eposta" required>
+        </div>
+
+        <div>
+            <label for="sifre">Şifre:</label>
+            <input type="password" id="sifre" name="sifre" required>
+        </div>
+        <div>
+            <label for="sifreTekrar">Şifre Tekrar:</label>
+            <input type="password" id="sifreTekrar" name="sifreTekrar" required>
+        </div>
+        <button type="submit" class="button">Kaydet</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $('#uyeFormu').submit(function (e) {
+                e.preventDefault(); // Form submitini engelle
+
+                
+                var eposta = $('#eposta').val();
+                var ad = $('#ad').val();
+                var soyad = $('#soyad').val();
+                var cepTelefonu = $('#cepTelefonu').val();
+                var sifre = $('#sifre').val();
+                var sifreTekrar = $('#sifreTekrar').val();
+
+                
+                var epostaFormati = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!epostaFormati.test(eposta)) {
+                    alert('Geçersiz e-posta adresi!');
+                    return;
+                }
+
+                
+                if (ad === '' || soyad === '' || cepTelefonu === '' || sifre === '' || sifreTekrar === '') {
+                    alert('Lütfen tüm alanları doldurun!');
+                    return;
+                }
+
+                
+                if (sifre !== sifreTekrar) {
+                    alert('Şifreler eşleşmiyor!');
+                    return;
+                }
+
+                // Hata yoksa alert göster ve sayfa2.html'e yönlendir
+                var bilgi = 'E-posta: ' + eposta + '\nAd: ' + ad + '\nSoyad: ' + soyad + '\nCep Telefonu: ' + cepTelefonu;
+                alert(bilgi);
+                window.location.href = 'sayfa2.html';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
